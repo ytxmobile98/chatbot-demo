@@ -2,8 +2,9 @@ from typing import List
 
 from langchain.schema import Document
 
-from utils.faiss_db import db_get_answers_from_query, db_get_top_k_answers
-from utils.import_data import create_db
+from paths import data_file_path, db_dir
+from utils.faiss_db import create_db, db_save_local, \
+    db_get_answers_from_query, db_get_top_k_answers
 
 
 def print_docs(docs: List[Document]):
@@ -12,7 +13,8 @@ def print_docs(docs: List[Document]):
 
 
 def main():
-    db = create_db()
+    db = create_db(data_file_path)
+    db_save_local(db, db_dir)
 
     query = ('留学')
 
