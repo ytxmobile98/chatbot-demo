@@ -9,11 +9,11 @@ def split_file_as_documents(filepath: str) -> List[Document]:
         text = f.read()
 
     splitter = CharacterTextSplitter(
-        separator='\n\n',
-        chunk_size=1000,
-        chunk_overlap=200,
+        separator=r'\d+\.',
+        chunk_size=100,
+        chunk_overlap=0,
         length_function=len,
-        is_separator_regex=False,
+        is_separator_regex=True,
     )
     texts = splitter.create_documents([text])
 
